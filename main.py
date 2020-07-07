@@ -7,7 +7,12 @@ from decouple import config
 client = commands.Bot(command_prefix='!')
 client.remove_command('help')
 
-Discord_Token = config('DISCORD_TOKEN')
+# TODO: Split into various cogs/files
+# TODO: def player_list(): add a player list call
+# TODO: async def autopick(): auto picks teams
+# TODO: def map_remove(): removes a map that is currently in use
+# TODO: def map_add(): adds a map that is no longer in use
+# TODO: def map_check(): edits the map list based on available maps
 
 
 @client.command()
@@ -22,7 +27,8 @@ async def help(ctx):
     embed.add_field(name='Lobby Commands',
                     value='`!join` - Join the lobby for a match\n'
                           '`!leave` - Leave the lobby for a match\n'
-                          '`!queue` - See the current match lobby'
+                          '`!queue` - See the current lobby'
+                          # '`!match` - See the current match'
                     , inline=False)
     embed.add_field(name='Team Captain Commands',
                     value='`!account` - Passes out accounts to those players who need them\n'
@@ -30,8 +36,8 @@ async def help(ctx):
                           '`!ban` `map name` - Removes a map from the map pool\n'
                           '`!pick` `@player` - Picks a player\n'
                           '`!submit` `matchID` - Submit the results of the match.'
-                    # '`!players` - DM\'s remaining player\'s stats'
-                    # '`!autopick`- '
+                          # '`!players` - DM\'s remaining player\'s stats'
+                          # '`!autopick`- '
                     , inline=False)
     embed.add_field(name='Other Commands',
                     value='`!help` - Brings up this prompt\n'
@@ -69,4 +75,4 @@ for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
 
-client.run(Discord_Token)
+client.run(config('DISCORD_TOKEN'))

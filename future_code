@@ -1,0 +1,66 @@
+    @commands.command()
+    @commands.guild_only()
+    async def match(self, ctx):
+        await ctx.channel.send(embed=match_list())
+
+
+
+    # @commands.command()  # !ban [Map Name]
+    # @commands.guild_only()
+    # async def ban(self, ctx):
+    #     if ctx.author.id == team_pick_captain:
+    #         if len(factions_team) != 2:
+    #             await ctx.channel.send(f'{ctx.author.mention} please pick your faction')
+    #         elif len(get_map_match()) == 1:
+    #             await ctx.channel.send(
+    #                 f'{ctx.author.mention} your map has already been selected ({map_match}), please pick a player')
+    #         else:
+    #             remove_map_match(ctx.message.content[5:])
+    #             pick_switch()
+    #             await ctx.channel.send(f'{ctx.author.mention} banned {ctx.message.content[5:]}!')
+    #             if len(get_map_match()) <= 4:
+    #                 set_map_match(get_map_match([random.randint(0, len(get_map_match()) - 1)]))
+    #             await ctx.channel.send(f'The map will be {get_map_match()}!')
+    #     else:
+    #         await ctx.channel.send(f'{ctx.author.mention} it is not your turn to pick!')
+
+
+
+    # @commands.command()  # !auto_pick
+    # @commands.guild_only()
+    # async def auto_pick(self, ctx):
+    #     if ctx.author.id == team_pick_captain:
+    #         if not team1_faction or not team2_faction:
+    #             await ctx.channel.send(f'{ctx.author.mention} please pick your faction first')
+    #         elif not match_map:
+    #             await ctx.channel.send(f'{ctx.author.mention} please ban a map from the pool first')
+    #     else:
+    #         await ctx.channel.send(f'{ctx.author.mention} it is not your turn to pick!')
+    #     await ctx.channel.send(embed=match_list())
+    #     if not roster:
+    #         reset()
+    #         await ctx.channel.send('Teams and factions are picked, prepare to play!')
+
+
+
+    # @commands.command()  # !players
+    # @commands.guild_only()
+    # async def players(self, ctx):
+    #     if ctx.author.id == team_pick_captain:
+    #         embed = discord.Embed(
+    #             description='Remaining Player List:',
+    #             colour=discord.Color.orange()
+    #         )
+    #         for player in roster:
+    #             mycursor.execute(f"SELECT * FROM `planetside_users` WHERE `discord` = {player[2:-1]}")
+    #             stats = mycursor.fetchone()
+    #             user = await self.client.fetch_user(player[2:-1])
+    #             embed.add_field(name=f'{user}', value=f'Matches Played: {stats[2]} \n'
+    #                                                   f'Live [Main](https://ps2.fisu.pw/player/?name=rapidrelief1)\n'
+    #                                                   f'Jaeger [VS](https://ps2.fisu.pw/player/?name=rapidrelief1) '
+    #                                                   f'[NC](https://ps2.fisu.pw/player/?name=rapidrelief1) '
+    #                                                   f'[TR](https://ps2.fisu.pw/player/?name=rapidrelief1)',
+    #                             inline=False)
+    #         await ctx.author.send(embed=embed)
+    #     else:
+    #         ctx.channel.send('You have to be picking player to use this command!')
