@@ -6,10 +6,10 @@ from update import *
 # Connect to MariaDB Platform
 try:
     conn = mariadb.connect(
-        user=config('LOCALHOST_USER'),
-        password=config('LOCALHOST_PASSWORD'),
-        host="192.0.2.1",
-        port=3306,
+        user=config('DATABASE_USER'),
+        password=config('DATABASE_PASSWORD'),
+        host=config('DATABASE_HOST'),
+        port=config('DATABASE_PORT'),
         database="planetside_data"
     )
     print('submit.py connected to MariaDB database')
