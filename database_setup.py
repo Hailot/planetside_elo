@@ -58,7 +58,7 @@ def setup_db():
     match_players_sql ='''CREATE TABLE match_players(
     id INT AUTO_INCREMENT PRIMARY KEY,
     player_id INT,
-    character_id INT,
+    character_id BIGINT,
     match_id INT
     )'''
     myCursor.execute(match_players_sql)
