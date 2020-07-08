@@ -1,0 +1,22 @@
+# To ensure app dependencies are ported from your virtual environment/host machine into your container, run 'pip freeze > requirements.txt' in the terminal to overwrite this file
+aiohttp
+async-timeout
+attrs
+chardet
+discord
+discord.py
+idna
+mariadb
+multidict
+mysql
+mysql-connector
+mysql-connector-python
+mysqlclient
+numpy
+protobuf
+python-decouple
+python-dotenv
+setuptools
+six
+websockets
+yarl
