@@ -1,0 +1,43 @@
+version: '2'
+
+services:
+  db:
+    image: mariadb:10.4.6
+    container_name: db
+    restart: always
+    networks:
+      - demo_network
+    environment:
+      MYSQL_DATABASE: planetside_data
+      # So you don't have to use root, but you can if you like
+      # You can use whatever password you like
+      MYSQL_PASSWORD: pugs1337
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: pugs1337
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - ./data/db:/var/lib/mysql  
+
+  planetsideelo:
+    image: planetsideelo
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment: 
+      DATABASE_HOST: db
+      DATABASE_PORT: 3306
+    networks:
+      - demo_network
+    depends_on: 
+      - db
+    links:
+      - db
+networks:
+  demo_network:

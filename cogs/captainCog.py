@@ -17,9 +17,9 @@ from submit import *
 # Connect to MariaDB Platform
 try:
     conn = mariadb.connect(
-        user=config('LOCALHOST_USER'),
-        password=config('LOCALHOST_PASSWORD'),
-        host="192.0.2.1",
+        user='root',
+        password='pugs1337',
+        host='db',
         port=3306,
         database="planetside_data"
     )
