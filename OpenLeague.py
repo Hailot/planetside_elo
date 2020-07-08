@@ -19,10 +19,10 @@ import sys
 # Connect to MariaDB Platform
 try:
     conn = mariadb.connect(
-        user=config('DATABASE_USER'),
-        password=config('DATABASE_PASSWORD'),
-        host=config('DATABASE_HOST'),
-        port=config('DATABASE_PORT'),
+        user='root',
+        password='pugs1337',
+        host='db',
+        port=3306,
         database="planetside_data"
     )
     print('OpenLeague.py connected to MariaDB database')
