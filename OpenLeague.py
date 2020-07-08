@@ -22,7 +22,6 @@ try:
         user='root',
         password='pugs1337',
         host='db',
-        port=3306,
         database="planetside_data"
     )
     print('OpenLeague.py connected to MariaDB database')
