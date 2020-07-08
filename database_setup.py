@@ -70,5 +70,11 @@ def setup_db():
     )'''
     myCursor.execute(planetside_users_sql)
 
+    #Add Foreign Keys
+    myCursor.execute("ALTER TABLE matches ADD FOREIGN KEY (team_a_captain_id) REFERENCES players (id)")
+    myCursor.execute("ALTER TABLE matches ADD FOREIGN KEY (team_b_captain_id) REFERENCES players (id)")
+    myCursor.execute("ALTER TABLE match_players ADD FOREIGN KEY (match_id) REFERENCES matches (id)")
+    myCursor.execute("ALTER TABLE match_players ADD FOREIGN KEY (player_id) REFERENCES players (id)")
+
     #Closing the connection
     conn.close()
