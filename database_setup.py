@@ -23,18 +23,45 @@ def setup_db():
 
     #Dropping players table if already exists.
     myCursor.execute("DROP TABLE IF EXISTS players")
+    myCursor.execute("DROP TABLE IF EXISTS matches")
+    myCursor.execute("DROP TABLE IF EXISTS match_players")
     myCursor.execute("DROP TABLE IF EXISTS planetside_users")
 
 
     #Creating table as per requirement
     players_sql ='''CREATE TABLE players(
-    id INT AUTO_INCREMENT PRIMARY KEY,  
-    vs_char_id INT,
-    nc_char_id INT,
-    tr_char_id INT,
-    wins INT
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    discord VARCHAR(255),
+    wins INT,
+    losses INT,
+    is_teamcaptain TINYINT,
+    is_active TINYINT,
+    vs_char_id BIGINT,
+    nc_char_id BIGINT,
+    tr_char_id BIGINT
     )'''
     myCursor.execute(players_sql)
+
+    matches_sql ='''CREATE TABLE matches(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    team_a_captain_id INT,
+    team_b_captain_id INT,
+    team_a_score INT,
+    team_b_score INT,
+    is_active TINYINT,
+    script_id VARCHAR(255),
+    start_time BIGINT,
+    end_time BIGINT
+    )'''
+    myCursor.execute(matches_sql)
+
+    match_players_sql ='''CREATE TABLE match_players(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    player_id INT,
+    character_id INT,
+    match_id INT
+    )'''
+    myCursor.execute(match_players_sql)
     
     planetside_users_sql ='''CREATE TABLE planetside_users(
     id INT AUTO_INCREMENT PRIMARY KEY,  
