@@ -14,6 +14,7 @@ mysql-connector-python
 mysqlclient
 numpy
 protobuf
+pyodbc
 python-decouple
 python-dotenv
 setuptools

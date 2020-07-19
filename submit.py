@@ -2,6 +2,7 @@ import mariadb
 from decouple import config
 import sys
 from update import *
+import pyodbc
 
 # Connect to MariaDB Platform
 try:
@@ -9,7 +10,6 @@ try:
         user='root',
         password='pugs1337',
         host='db',
-        port=3306,
         database="planetside_data"
     )
     print('submit.py connected to MariaDB database')
@@ -22,14 +22,16 @@ myCursor = conn.cursor()
 
 
 def submit(Match_ID):
-    allPlayers = []
-    winningPlayers = []
-    losingPlayers = []
-    for player in allPlayers:
-        if player:
-            add(player, winningPlayers)
-        else:
-            add(player, losingPlayers)
+    cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};'
+                          'SERVER=test;'
+                          f'DATABASE=[dbo].[elo_player_match_results] @i_vMatchId = {Match_ID};'
+                          'UID=user;'
+                          'PWD=password')
+    pullCursor = cnxn.cursor()
+    pullCursor.execute("select CharacterId from users where IsOnWinningTeam = 1")
+    winningPlayers = pullCursor.fetchall()
+    pullCursor.execute("select CharacterId from users where IsOnWinningTeam = 0")
+    losingPlayers = pullCursor.fetchall()
     for winningPlayer in winningPlayers:
         myCursor.execute(
             f"SELECT `wins` FROM `players` WHERE `vs_char_id` = {winningPlayer} OR `nc_char_id` = {winningPlayer} OR `tr_char_id` = {winningPlayer}")

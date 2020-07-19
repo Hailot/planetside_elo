@@ -10,7 +10,6 @@ database_setup.setup_db()
 client = commands.Bot(command_prefix='!')
 client.remove_command('help')
 
-# TODO: Split into various cogs/files
 # TODO: def player_list(): add a player list call
 # TODO: async def autopick(): auto picks teams
 # TODO: def map_remove(): removes a map that is currently in use

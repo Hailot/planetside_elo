@@ -20,7 +20,6 @@ try:
         user='root',
         password='pugs1337',
         host='db',
-        port=3306,
         database="planetside_data"
     )
     print('Captain Cog connected to MariaDB database')
